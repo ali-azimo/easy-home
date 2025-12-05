@@ -12,6 +12,7 @@ import diverRouter from './routes/diver.route.js'
 import saudeRouter from './routes/saude.route.js'
 import mininRouter from './routes/minin.route.js'
 import semRoutes from './routes/sem.route.js'
+import likeRouter from './routes/like.route.js';
 
 import cors from 'cors';
 dotenv.config();
@@ -31,8 +32,7 @@ mongoose.connect(process.env.MONGO)
 
 const allowedOrigins = [
   'http://localhost:5173',
-  'http://localhost:3000',       // desenvolvimento local
-  'https://www.bgs-imo.com'       // produção na Vercel
+  'http://localhost:4000'
 ];
 
 app.use(cors({
@@ -57,6 +57,7 @@ app.use('/api/diver', diverRouter);
 app.use('/api/saude', saudeRouter);
 app.use('/api/minin', mininRouter);
 app.use('/api/sem', semRoutes);
+app.use('/api/like', likeRouter);
 
 // Testar backend
 app.get('/', (req, res) => {
