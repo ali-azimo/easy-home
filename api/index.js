@@ -25,10 +25,6 @@ mongoose.connect(process.env.MONGO)
   .then(() => console.log('MongoDB conectado'))
   .catch(err => console.error('Erro ao conectar MongoDB:', err));
 
-// app.use(cors({
-//     origin: 'https://www.bgs-imo.com', 
-//     credentials: true
-// }));
 
 const allowedOrigins = [
   'http://localhost:5173',
