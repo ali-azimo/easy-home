@@ -28,9 +28,9 @@ mongoose.connect(process.env.MONGO)
 
 const allowedOrigins = [
   'http://localhost:5173',
-  'http://localhost:4000'
+  'http://localhost:4000',
+  'https://easy-home-nu.vercel.app'
 ];
-
 app.use(cors({
   origin: function (origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) {
@@ -43,6 +43,7 @@ app.use(cors({
 }));
 app.use(express.json());
 app.use(cookieParser());
+
 
 // Rotas
 app.use('/api/user', userRouter);
