@@ -1,6 +1,5 @@
-// src/App.jsx
-import React, { useEffect } from 'react';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Home from './pages/Home';
 import SignUp from './pages/SignUp';
@@ -38,30 +37,11 @@ import SaudeHome from './pages/SaudeHome';
 import MininHome from './pages/MininHome';
 import ScrollToTop from './pages/ScrollToTop';
 
-import { logPageView } from './ga';
-import ConsentBanner from './components/ConsentBanner';
 import PrivacyPolicy from './components/PrivacyPolicy';
-
-const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID;
-
-function RouteTracker() {
-  const location = useLocation();
-
-  useEffect(() => {
-    const consent = localStorage.getItem('bgs_consent');
-    if (consent === 'accepted') {
-      logPageView(); // dispara pageview só se o consentimento foi dado
-    }
-  }, [location]);
-
-  return null;
-}
 
 export default function App() {
   return (
     <BrowserRouter>
-      <ConsentBanner measurementId={measurementId} />
-      <RouteTracker />
       <ScrollToTop />
       <Header />
       <Routes>
