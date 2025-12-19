@@ -1,24 +1,27 @@
 import express from "express";
 import { verifyToken } from "../utils/verificar.usuario.js";
 import {
-  createLike,
-  deleteLike,
-  getLikesByPost,
+  toggleLike,
+  checkUserLike,
   getUserLikes,
-  getUserLikesByToken,
-  deleteLikeByProperty
+  getLikesCount
 } from "../controllers/like.controller.js";
 
 const router = express.Router();
 
-router.post("/", verifyToken, createLike);
-router.post("/create", verifyToken, createLike);
+// Todas as rotas requerem autenticação
+router.use(verifyToken);
 
-router.delete("/delete/:id", verifyToken, deleteLike); 
-router.delete("/property/:propertyId", verifyToken, deleteLikeByProperty);
+// Like/Unlike
+router.post("/toggle", toggleLike);
 
-router.get("/post/:postId", getLikesByPost);
-router.get("/user/:userId", getUserLikes);
-router.get("/user", verifyToken, getUserLikesByToken); // Novo endpoint
+// Verificar like específico
+router.get("/check/:propertyId", checkUserLike);
+
+// Likes do usuário
+router.get("/user", getUserLikes);
+
+// Contar likes de um imóvel
+router.get("/count/:propertyId", getLikesCount);
 
 export default router;
