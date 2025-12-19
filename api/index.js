@@ -56,7 +56,6 @@ app.use('/api/minin', mininRouter);
 app.use('/api/sem', semRoutes);
 app.use('/api/like', likeRouter);
 
-// Testar backend
 app.get('/', (req, res) => {
   res.send('API online 🚀');
 });
